@@ -8,7 +8,16 @@ class MoviesController < ApplicationController
 
   def index
     @sort = params[:sort]    
-    @movies = Movie.order(@sort).all
+    @all_ratings = Movie.MPAA_ratings
+    if params[:ratings].nil?
+      @ratings = Hash.new
+      @all_ratings.each do |rating|
+        @ratings[rating] = 1
+      end
+    else
+      @ratings = params[:ratings]
+    end
+    @movies = Movie.order(params[:sort]).where(:rating => @ratings.keys).all
   end
 
   def new
