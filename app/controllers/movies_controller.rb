@@ -8,15 +8,27 @@ class MoviesController < ApplicationController
 
   def index
     @all_ratings = Movie.MPAA_ratings
+    #session[:sort] = params[:sort]
+    logger.debug(params)
     if params[:ratings].nil?
-      @ratings = Hash.new
-      @all_ratings.each do |rating|
-        @ratings[rating] = 1
+      if session[:ratings].nil? || params[:load_all]
+        session[:ratings] = Hash.new
+        @all_ratings.each do |rating|
+          session[:ratings][rating] = 1
+        end
       end
     else
-      @ratings = params[:ratings]
+      session[:ratings] = params[:ratings]
     end
-    @movies = Movie.order(params[:sort]).where(:rating => @ratings.keys).all
+    @ratings = session[:ratings]
+    if !params[:sort].nil?
+      session[:sort] = params[:sort]
+    end
+    if params[:sort].nil? || params[:ratings].nil?
+      flash.keep
+      redirect_to movies_path(:sort => session[:sort], :ratings => session[:ratings])
+    end
+    @movies = Movie.order(session[:sort]).where(:rating => session[:ratings].keys).all
   end
 
   def new

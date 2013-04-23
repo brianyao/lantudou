@@ -1,5 +1,5 @@
 -#  This file is app/views/movies/index.html.haml
-%h1= link_to 'All Movies', movies_path
+%h1= link_to 'All Movies', movies_path(:load_all => true)
 
 = form_tag movies_path, :method => :get, :id => "ratings_form" do
   Include: 
@@ -11,9 +11,9 @@
 %table#movies
   %thead
     %tr
-      %th= link_to 'Movie Title', movies_path(:sort => "title", :ratings => @ratings), :id => "title_header"
-      %th Rating
-      %th= link_to 'Release Date', movies_path(:sort => "release_date", :ratings => @ratings), :id => "release_date_header"
+      %th= link_to 'Movie Title', movies_path(:sort => "title"), :id => "title_header"
+      %th= link_to 'Rating', movies_path(:sort => "rating"), :id => "rating_header"
+      %th= link_to 'Release Date', movies_path(:sort => "release_date"), :id => "release_date_header"
       %th More Info
   %tbody
     - @movies.each do |movie|
