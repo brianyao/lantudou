@@ -7,6 +7,7 @@ class MoviesController < ApplicationController
   end
 
   def index
+    @sort = params[:sort]    
     @all_ratings = Movie.MPAA_ratings
     #session[:sort] = params[:sort]
     logger.debug(params)
