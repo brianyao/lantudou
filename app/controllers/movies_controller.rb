@@ -21,7 +21,9 @@ class MoviesController < ApplicationController
       session[:ratings] = params[:ratings]
     end
     @ratings = session[:ratings]
-    if !params[:sort].nil?
+    if params[:sort].nil?
+      session[:sort] = "id"
+    else
       session[:sort] = params[:sort]
     end
     if params[:sort].nil? || params[:ratings].nil?
