@@ -25,7 +25,7 @@ end
 
 gem 'jquery-rails'
 gem 'omniauth-twitter'
-gem 'omniauth-facebook', '1.4.0'
+gem 'omniauth-facebook'
 # Use unicorn as the web server
 # gem 'unicorn'
 
