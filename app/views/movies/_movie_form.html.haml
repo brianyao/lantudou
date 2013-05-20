@@ -1,6 +1,7 @@
 -# in _movie_form.html.haml (the partial)
  
-- unless @movie.errors.empty?
+- #unless @movie.errors.empty?
+- unless @movie == nil || @movie.errors.empty?
   #warning
     Errors prevented this movie from being #{controller.action_name}d:
     %ul

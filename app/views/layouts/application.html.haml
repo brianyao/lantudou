@@ -5,8 +5,9 @@
     = stylesheet_link_tag 'application'
     = javascript_include_tag 'application'
     = csrf_meta_tags
-
+  
   %body
+    = render :partial=>'sessions/login'
     %h1.title= link_to "Rotten Potatoes!", movies_path(:load_all => true)
     #main
       - if flash[:notice]

@@ -24,7 +24,8 @@ group :assets do
 end
 
 gem 'jquery-rails'
-
+gem 'omniauth-twitter'
+gem 'omniauth-facebook', '1.4.0'
 # Use unicorn as the web server
 # gem 'unicorn'
 

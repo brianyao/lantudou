@@ -16,11 +16,19 @@ class Movie < ActiveRecord::Base
 	return RATINGS
   end
 
+  # def released_1930_or_later
+  #   errors.add(:release_date, 'must be 1930 or later') if
+  #     self.release_date < Date.parse('1 Jan 1930')
+  # end
+
+  # def grandfathered? ; self.release_date >= @@grandfathered_date ; end
   def released_1930_or_later
     errors.add(:release_date, 'must be 1930 or later') if
-      self.release_date < Date.parse('1 Jan 1930')
+      self.release_date != nil && self.release_date < Date.parse('1 Jan 1930')
   end
 
-  def grandfathered? ; self.release_date >= @@grandfathered_date ; end
+  def grandfathered?
+    self.release_date != nil && self.release_date <= @@grandfathered_date
+  end
    
 end

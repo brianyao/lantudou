@@ -13,8 +13,12 @@ Rottenpotatoes::Application.routes.draw do
   # Sample resource route (maps HTTP verbs to controller actions automatically):
   #   resources :products
   resources :movies
-  root :to => redirect('/movies')
+  root :to => redirect('/movies') 
+  match 'auth/:provider/callback' => 'sessions#create',:as => 'login'
+  match 'logout' => 'sessions#destroy'
 
+  # match "/login" => redirect("/auth/twitter"), as: :login
+  # match "/logout" => "sessions#destroy", as: :logout 
   # Sample resource route with options:
   #   resources :products do
   #     member do
