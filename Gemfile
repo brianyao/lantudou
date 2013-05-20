@@ -24,8 +24,11 @@ group :assets do
 end
 
 gem 'jquery-rails'
-gem 'omniauth-twitter'
-gem 'omniauth-facebook'
+gem 'omniauth'
+gem 'omniauth-facebook'  
+ 
+# gem 'omniauth-twitter'
+# gem 'omniauth-facebook'
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -34,3 +37,5 @@ gem 'omniauth-facebook'
 
 # To use debugger
 gem 'haml'
+
+

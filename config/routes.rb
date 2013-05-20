@@ -14,9 +14,13 @@ Rottenpotatoes::Application.routes.draw do
   #   resources :products
   resources :movies
   root :to => redirect('/movies') 
-  match 'auth/:provider/callback' => 'sessions#create',:as => 'login'
+  get "sessions/create"
+  get "sessions/failure"
+  match "/login" => redirect("/auth/facebook"), :as => :login
+  match '/auth/:provider/callback', :to => 'sessions#create'
+  match '/auth/failure', :to => 'sessions#failure'
   match 'logout' => 'sessions#destroy'
-
+  
   # match "/login" => redirect("/auth/twitter"), as: :login
   # match "/logout" => "sessions#destroy", as: :logout 
   # Sample resource route with options:
