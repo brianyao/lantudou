@@ -4,7 +4,8 @@ class ReviewsController < ApplicationController
   def has_moviegoer_and_movie
     unless @current_user
       flash[:warning] = 'You must be logged in to create a review.'
-      redirect_to login_path
+      redirect_to movie_path(params[:movie_id])
+      # redirect_to login_path(:provider => 'facebook')
     end
     unless (@movie = Movie.find_by_id(params[:movie_id]))
       flash[:warning] = 'Review must be for an existing movie.'
@@ -13,7 +14,7 @@ class ReviewsController < ApplicationController
   end
   public
   def new
-    @review = @movie.reviews.build
+    @review = @movie.reviews.build        
   end
   def create
     # since moviegoer_id is a protected attribute that won't get
@@ -21,5 +22,6 @@ class ReviewsController < ApplicationController
     # by using the << method on the association.  We could also
     # set it manually with review.moviegoer = @current_user.
     @current_user.reviews << @movie.reviews.build(params[:review])
+    redirect_to movies_path # or somewhere else
   end
 end
