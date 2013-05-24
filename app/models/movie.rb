@@ -1,4 +1,5 @@
 class Movie < ActiveRecord::Base
+  has_many :reviews
   RATINGS = %w[G PG PG-13 R NC-17]  #  %w[] shortcut for array of strings
   @@grandfathered_date = Date.parse('1 November 1968')
   validates :title, :presence => true
